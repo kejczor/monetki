@@ -1,30 +1,31 @@
-function send() {
-  const xhttp = new XMLHttpRequest();
-  let imie = encodeURIComponent(document.getElementById("imie").value);
-  xhttp.open("POST", "ajax.php");
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      get();
-    }
-  };
-
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("acc=add&imie=" + imie);
-}
+const resolveUrl = (url) => location.href + (url.startsWith("/") ? url.slice(1) : url);
 
 const get = () => {
   const table = document.querySelector("tbody");
   table.innerHTML = "";
 
+  fetch("allSelectable.php")
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+
   fetch("ajax.php")
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       data.forEach((coin) => {
-        const row = document.createElement("tr");
+        const tr = document.createElement("tr");
+
+        const img = new Image();
+        img.src = resolveUrl(coin.flag_image);
+        tr.appendChild(img);
+
+        [coin.nominal, coin.catalog_number, coin.alloy_name, coin.year].forEach((text) => {
+          console.log(text);
+          const td = document.createElement("td");
+          td.textContent = text;
+          tr.appendChild(td);
+        });
+
+        table.appendChild(tr);
       });
     });
 };
-
-const url = new URL("/gfx/albania.jpg", location.href);
