@@ -10,6 +10,10 @@
       table {
         text-align: center;
       }
+      img[src="gfx/confirm.png"],
+      img[src="gfx/delete.gif"] {
+        width: 20px;
+      }
     </style>
   </head>
   <body onload="getAll()">
@@ -43,7 +47,9 @@
             <input type="number" name="year" />
           </td>
           <td>
-            <button type="submit">create</button>
+            <button type="submit" id="create-button">
+              <img src="gfx/confirm.png" alt="" />
+            </button>
           </td>
         </tfoot>
       </table>

@@ -1,5 +1,4 @@
-const resolveUrl = (url) =>
-  location.href + (url.startsWith("/") ? url.slice(1) : url);
+const resolveUrl = (url) => location.href + (url.startsWith("/") ? url.slice(1) : url);
 
 let countries = [];
 let alloys = [];
@@ -45,9 +44,7 @@ const getCoins = () => {
         img.onclick = () => editCoin(tr.dataset.id);
         tr.appendChild(img);
 
-        const aaa = ["nominal", "catalog_number", "alloy_name", "year"].map(
-          (key) => [key, coin[key]]
-        );
+        const aaa = ["nominal", "catalog_number", "alloy_name", "year"].map((key) => [key, coin[key]]);
 
         aaa.forEach(([key, text]) => {
           const td = document.createElement("td");
@@ -58,9 +55,10 @@ const getCoins = () => {
 
         const td = document.createElement("td");
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "x";
-        deleteButton.classList.add("deleteButton");
         deleteButton.type = "button";
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "gfx/delete.gif";
+        deleteButton.append(deleteIcon);
         deleteButton.onclick = () => deleteCoin(tr.dataset.id);
         td.appendChild(deleteButton);
         tr.appendChild(td);
@@ -104,11 +102,15 @@ const handleSubmit = (e) => {
   }
 
   if (editingId !== null) {
+    const createButton = document.querySelector("#create-button");
+    createButton.disabled = false;
     postEditedCoin(urlEncodedData);
     editingId = null;
   } else {
     postNewCoin(urlEncodedData);
   }
+
+  e.target.reset();
 };
 
 const deleteCoin = (id) => {
@@ -125,6 +127,9 @@ const deleteCoin = (id) => {
 };
 
 const editCoin = (id) => {
+  const createButton = document.querySelector("#create-button");
+  createButton.disabled = true;
+
   const tr = document.querySelector(`tr[data-id="${id}"]`);
   editingId = id;
 
@@ -134,8 +139,7 @@ const editCoin = (id) => {
     const option = document.createElement("option");
     option.textContent = country.country_name;
     option.value = country.country_id;
-    option.defaultSelected =
-      tr.querySelector(`*:nth-child(1)`).dataset.country === country.country_id;
+    option.defaultSelected = tr.querySelector(`*:nth-child(1)`).dataset.country === country.country_id;
     countrySelect.appendChild(option);
   });
 
@@ -153,8 +157,7 @@ const editCoin = (id) => {
     const option = document.createElement("option");
     option.textContent = alloy.alloy_name;
     option.value = alloy.alloy_id;
-    option.selected =
-      tr.querySelector(`*:nth-child(4)`).textContent === alloy.alloy_name;
+    option.selected = tr.querySelector(`*:nth-child(4)`).textContent === alloy.alloy_name;
     alloySelect.appendChild(option);
   });
 
@@ -163,8 +166,14 @@ const editCoin = (id) => {
   year.type = "number";
   year.value = tr.querySelector("*:nth-child(5)").textContent;
 
+  const editButton = document.createElement("button");
+  editButton.type = "submit";
+  const confirmIcon = document.createElement("img");
+  confirmIcon.src = "gfx/confirm.png";
+  editButton.append(confirmIcon);
+
   tr.innerHTML = "";
-  [countrySelect, nominal, catalog_number, alloySelect, year].forEach((el) => {
+  [countrySelect, nominal, catalog_number, alloySelect, year, editButton].forEach((el) => {
     const td = document.createElement("td");
     td.append(el);
     tr.append(td);

@@ -7,7 +7,7 @@ if (mysqli_connect_errno()) {
   exit(1);
 }
 
-$country_sql = "SELECT panstwa.country_id, panstwa.country_name FROM panstwa";
+$country_sql = "SELECT panstwa.country_id, panstwa.country_name FROM panstwa ORDER BY panstwa.country_name";
 $country_result = mysqli_query($conn, $country_sql);
 if (mysqli_num_rows($country_result) < 1) {
   printf("Error: ", mysqli_error($conn));
@@ -16,7 +16,7 @@ if (mysqli_num_rows($country_result) < 1) {
 $country_names = mysqli_fetch_all($country_result, MYSQLI_ASSOC);
 
 
-$alloy_sql = "SELECT stopy.alloy_id, stopy.alloy_name FROM stopy";
+$alloy_sql = "SELECT stopy.alloy_id, stopy.alloy_name FROM stopy ORDER BY stopy.alloy_name";
 $alloy_result = mysqli_query($conn, $alloy_sql);
 if (mysqli_num_rows($alloy_result) < 1) {
   printf("Error: ", mysqli_error($conn));
