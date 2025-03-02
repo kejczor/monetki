@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2025 at 06:36 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Mar 02, 2025 at 03:09 PM
+-- Wersja serwera: 10.4.32-MariaDB
+-- Wersja PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monetki`
+-- Struktura tabeli dla tabeli `monetki`
 --
 
 CREATE TABLE `monetki` (
@@ -41,12 +41,22 @@ CREATE TABLE `monetki` (
 --
 
 INSERT INTO `monetki` (`id`, `country_id`, `nominal`, `catalog_number`, `alloy_id`, `year`) VALUES
-(1, 1, 'lek', 'km#75', 1, 1989);
+(2, 2, 'aaaa', '', 2, 1988),
+(4, 1, 'aaaaa', 'v', 2, 21),
+(13, 1, 'a', 'a', 1, 0),
+(18, 1, 'a', 'a', 1, 0),
+(20, 1, 'a', 'a', 2, 0),
+(21, 2, 'a', 'a', 2, 0),
+(22, 1, '', '', 1, 0),
+(23, 1, '', 'pppppppppppp', 1, 0),
+(24, 1, '', '', 1, 0),
+(25, 1, '', '', 1, 0),
+(26, 1, '', '', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panstwa`
+-- Struktura tabeli dla tabeli `panstwa`
 --
 
 CREATE TABLE `panstwa` (
@@ -66,7 +76,7 @@ INSERT INTO `panstwa` (`country_id`, `country_name`, `flag_image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stopy`
+-- Struktura tabeli dla tabeli `stopy`
 --
 
 CREATE TABLE `stopy` (
@@ -84,11 +94,11 @@ INSERT INTO `stopy` (`alloy_id`, `alloy_name`) VALUES
 (3, 'bronze');
 
 --
--- Indexes for dumped tables
+-- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `monetki`
+-- Indeksy dla tabeli `monetki`
 --
 ALTER TABLE `monetki`
   ADD PRIMARY KEY (`id`),
@@ -96,13 +106,13 @@ ALTER TABLE `monetki`
   ADD KEY `id_stopu` (`alloy_id`);
 
 --
--- Indexes for table `panstwa`
+-- Indeksy dla tabeli `panstwa`
 --
 ALTER TABLE `panstwa`
   ADD PRIMARY KEY (`country_id`);
 
 --
--- Indexes for table `stopy`
+-- Indeksy dla tabeli `stopy`
 --
 ALTER TABLE `stopy`
   ADD PRIMARY KEY (`alloy_id`);
@@ -115,7 +125,7 @@ ALTER TABLE `stopy`
 -- AUTO_INCREMENT for table `monetki`
 --
 ALTER TABLE `monetki`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `panstwa`

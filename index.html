@@ -6,19 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="main.js" defer></script>
+    <style>
+      table {
+        text-align: center;
+      }
+    </style>
   </head>
-  <body onload="get()">
-    <table>
-      <thead>
-        <tr>
-          <th>flaga</th>
-          <th>nominał</th>
-          <th>nr kat.</th>
-          <th>stop</th>
-          <th>rok</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <body onload="getAll()">
+    <form onsubmit="handleSubmit(event)">
+      <table>
+        <thead>
+          <tr>
+            <th>flaga</th>
+            <th>nominał</th>
+            <th>nr kat.</th>
+            <th>stop</th>
+            <th>rok</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <td>
+            <select id="country-select" name="country_id"></select>
+          </td>
+          <td>
+            <input type="text" name="nominal" />
+          </td>
+          <td>
+            <input type="text" name="catalog_number" />
+          </td>
+          <td>
+            <select id="alloy-select" name="alloy_id"></select>
+          </td>
+          <td>
+            <input type="number" name="year" />
+          </td>
+          <td>
+            <button type="submit">create</button>
+          </td>
+        </tfoot>
+      </table>
+    </form>
   </body>
 </html>
